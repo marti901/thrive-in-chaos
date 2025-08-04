@@ -14,7 +14,10 @@ This repository contains the source code, PowerPoint slides of the Thrive in cha
 ### Microsoft Learn
 [Continuously validate and test mission-critical workloads](https://learn.microsoft.com/en-us/training/modules/continuous-validate-test-mission-critical-workloads/)
 
-### Reading
+### Reading books
+Chaos Engineering System Resiliency in Practice - ISBN: 9781492043867
+
+### Reading online
 [PRINCIPLES OF CHAOS ENGINEERING](https://principlesofchaos.org/)
 [Pioneers of modern incident management](https://books.sorryapp.com/2/incident-communication-101/26/pioneers-of-modern-incident-management)
 
