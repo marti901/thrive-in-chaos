@@ -1,4 +1,4 @@
-# ChaosEngineering
+# Chaos engineering
 
 This repository contains the source code, PowerPoint slides of the Thrive in chaos session.
 
