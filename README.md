@@ -19,7 +19,11 @@ Chaos Engineering System Resiliency in Practice - ISBN: 9781492043867
 
 ### Reading online
 [PRINCIPLES OF CHAOS ENGINEERING](https://principlesofchaos.org/)
+
 [Pioneers of modern incident management](https://books.sorryapp.com/2/incident-communication-101/26/pioneers-of-modern-incident-management)
+
+[Weathering the Unexpected
+Failures happen, and resilience drills help organizations prepare for them.](https://queue.acm.org/detail.cfm?id=2371516)
 
 ### Videos
 [The DiRT on Chaos Engineering at Google • Jason Cahoon • GOTO 2021](https://www.youtube.com/watch?v=6I8Ag9mCEpY)
