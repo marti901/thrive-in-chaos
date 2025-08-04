@@ -16,6 +16,7 @@ This repository contains the source code, PowerPoint slides of the Thrive in cha
 
 ### Reading
 [PRINCIPLES OF CHAOS ENGINEERING](https://principlesofchaos.org/)
+[Pioneers of modern incident management](https://books.sorryapp.com/2/incident-communication-101/26/pioneers-of-modern-incident-management)
 
 ### Videos
 [The DiRT on Chaos Engineering at Google • Jason Cahoon • GOTO 2021](https://www.youtube.com/watch?v=6I8Ag9mCEpY)
