@@ -1,41 +1,26 @@
-targetScope='resourceGroup'
+targetScope = 'subscription'
 
-param location string = 'West Europe'
+param resourceGroupName string
 
-resource appServicePlan 'Microsoft.Web/serverfarms@2024-11-01' = {
-  name: 'chaos-app-service-plan'
-  location: location
-  properties: {
-    reserved: true
-  }
-  sku: {
-    name: 'B1'
-  }
-  kind: 'linux'
-}
-
-resource appServiceA 'Microsoft.Web/sites@2024-11-01' = {
-  name: 'web-service-a'
-  location: location
-  properties: {
-    httpsOnly: true
-    serverFarmId: appServicePlan.id
-    siteConfig: {
-      linuxFxVersion: 'DOTNETCORE|9.0'
-      ftpsState: 'Disabled'
-    }
+module moduleResourceGroup 'resources/resourceGroup.bicep' = {
+  scope: subscription()
+  params: {
+    resourceGroupName: resourceGroupName
   }
 }
 
-resource appServiceB 'Microsoft.Web/sites@2024-11-01' = {
-  name: 'web-service-b'
-  location: location
-  properties: {
-    httpsOnly: true
-    serverFarmId: appServicePlan.id
-    siteConfig: {
-      linuxFxVersion: 'DOTNETCORE|9.0'
-      ftpsState: 'Disabled'
-    }
+module moduleAppServicePlan 'resources/appServicePlan.bicep' = {
+  scope: resourceGroup(resourceGroupName)
+  params: {
+    location: deployment().location
+  }
+  dependsOn: [moduleResourceGroup]
+}
+
+module appServices 'resources/appServices.bicep' = {
+  scope: resourceGroup(resourceGroupName)
+  params: {
+    appServicePlanId: moduleAppServicePlan.outputs.appServicePlanId
+    location: deployment().location
   }
 }

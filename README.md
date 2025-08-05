@@ -2,6 +2,24 @@
 
 This repository contains the source code, PowerPoint slides of the Thrive in chaos session.
 
+## Open issues
+Don't have to hard code URL's in YARP.
+
+## Creating infra
+
+The infra structure for the demo is defined in Bicep. The Azure CLI can be used to create the resources needed.
+
+To following command shows how the resources can be deployed with the Azure CLI.
+```powershell
+az deployment sub create --location <location> --template-file ./infra/main.bicep --parameters resourceGroupName=<resourceGroupName>
+```
+
+Example that creates an resource groep 'chaos-demo' and deploys the resources to West Europe.
+```powershell
+az deployment sub create --location 'West Europe' --template-file ./infra/main.bicep --parameters resourceGroupName='chaos-demo'
+```
+
+
 ## Additional resources
 
 ### Tools
