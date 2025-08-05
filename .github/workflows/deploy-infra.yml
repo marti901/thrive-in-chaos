@@ -23,3 +23,4 @@ jobs:
                 region: West Europe
                 subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
                 template: ./infra/main.bicep
+                parameters: resourceGroupName=chaos-demo
