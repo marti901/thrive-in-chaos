@@ -53,11 +53,11 @@ resource proxyAppService 'Microsoft.Web/sites@2024-11-01' = {
       appSettings: [
         {
           name: 'UrlServiceA'
-          value: appServiceA.properties.defaultHostName
+          value: 'https://${appServiceA.properties.defaultHostName}'
         }
         {
           name: 'UrlServiceB'
-          value: appServiceB.properties.defaultHostName
+          value: 'https://${appServiceB.properties.defaultHostName}'
         }
       ]
     }

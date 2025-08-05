@@ -7,12 +7,40 @@ env:
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 9.0.x
   WORKING_DIRECTORY: .
+  AZURE_WEBAPP_YARP_PROXY: proxy-web-service
   AZURE_WEBAPP_NAME_SERVICE_A: web-service-a
   AZURE_WEBAPP_NAME_SERVICE_B: web-service-b
   BASIC_SERVICE_LOCATION: ./code/BasicService
+  YARP_PROXY_LOCATION: ./code/YarpProxy
   BASIC_SERVICE_AZURE_WEBAPP_PACKAGE_PATH: ./published/BasicService
+  YARP_PROXY_AZURE_WEBAPP_PACKAGE_PATH: ./published/BasicService
 jobs:
-    build:
+    build_basic_service:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@main
+
+          - name: Setup .NET SDK
+            uses: actions/setup-dotnet@v4
+            with:
+              dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+
+          - name: Restore
+            run: dotnet restore "${{ env.BASIC_SERVICE_LOCATION }}"
+
+          - name: Build
+            run: dotnet build "${{ env.BASIC_SERVICE_LOCATION }}" --configuration ${{ env.CONFIGURATION }} --no-restore
+
+          - name: Publish
+            run: dotnet publish "${{ env.BASIC_SERVICE_LOCATION }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.BASIC_SERVICE_AZURE_WEBAPP_PACKAGE_PATH }}"
+
+          - name: Publish Artifacts
+            uses: actions/upload-artifact@v4
+            with:
+              name: webapp
+              path: ${{ env.BASIC_SERVICE_AZURE_WEBAPP_PACKAGE_PATH }}
+
+    build_yarp_proxy:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@main
@@ -23,23 +51,23 @@ jobs:
                 dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
 
             - name: Restore
-              run: dotnet restore "${{ env.BASIC_SERVICE_LOCATION }}"
+              run: dotnet restore "${{ env.YARP_PROXY_LOCATION }}"
 
             - name: Build
-              run: dotnet build "${{ env.BASIC_SERVICE_LOCATION }}" --configuration ${{ env.CONFIGURATION }} --no-restore
+              run: dotnet build "${{ env.YARP_PROXY_LOCATION }}" --configuration ${{ env.CONFIGURATION }} --no-restore
 
             - name: Publish
-              run: dotnet publish "${{ env.BASIC_SERVICE_LOCATION }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.BASIC_SERVICE_AZURE_WEBAPP_PACKAGE_PATH }}"
+              run: dotnet publish "${{ env.YARP_PROXY_LOCATION }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.YARP_PROXY_AZURE_WEBAPP_PACKAGE_PATH }}"
 
             - name: Publish Artifacts
               uses: actions/upload-artifact@v4
               with:
                 name: webapp
-                path: ${{ env.BASIC_SERVICE_AZURE_WEBAPP_PACKAGE_PATH }}
+                path: ${{ env.YARP_PROXY_AZURE_WEBAPP_PACKAGE_PATH }}
 
     deploy:
         runs-on: ubuntu-latest
-        needs: build
+        needs: [build_basic_service, build_yarp_proxy]
         steps:
         - name: Download artifact from build job
           uses: actions/download-artifact@v4
@@ -65,3 +93,9 @@ jobs:
           with:
             app-name: ${{ env.AZURE_WEBAPP_NAME_SERVICE_B }}
             package: ${{ env.BASIC_SERVICE_AZURE_WEBAPP_PACKAGE_PATH }}
+
+        - name: Deploy Yarp Proxy
+          uses: azure/webapps-deploy@v2
+          with:
+            app-name: ${{ env.AZURE_WEBAPP_YARP_PROXY }}
+            package: ${{ env.YARP_PROXY_AZURE_WEBAPP_PACKAGE_PATH }}
