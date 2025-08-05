@@ -28,3 +28,26 @@ resource appServiceB 'Microsoft.Web/sites@2024-11-01' = {
     }
   }
 }
+
+resource proxyAppService 'Microsoft.Web/sites@2024-11-01' = {
+  name: 'proxy-web-service'
+  location: location
+  properties: {
+    httpsOnly: true
+    serverFarmId: appServicePlanId
+    siteConfig: {
+      linuxFxVersion: 'DOTNETCORE|9.0'
+      ftpsState: 'Disabled'
+      appSettings: [
+        {
+          name: 'UrlServiceA'
+          value: appServiceA.properties.defaultHostName
+        }
+        {
+          name: 'UrlServiceB'
+          value: appServiceB.properties.defaultHostName
+        }
+      ]
+    }
+  }
+}

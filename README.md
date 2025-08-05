@@ -3,7 +3,8 @@
 This repository contains the source code, PowerPoint slides of the Thrive in chaos session.
 
 ## Open issues
-Don't have to hard code URL's in YARP.
+ - Don't have to hard code URL's in YARP.
+ - Have a working deployment pipeline
 
 ## Creating infra
 
@@ -18,7 +19,6 @@ Example that creates an resource groep 'chaos-demo' and deploys the resources to
 ```powershell
 az deployment sub create --location 'West Europe' --template-file ./infra/main.bicep --parameters resourceGroupName='chaos-demo'
 ```
-
 
 ## Additional resources
 
