@@ -12,6 +12,12 @@ resource appServiceA 'Microsoft.Web/sites@2024-11-01' = {
     siteConfig: {
       linuxFxVersion: 'DOTNETCORE|9.0'
       ftpsState: 'Disabled'
+      appSettings: [
+        {
+          name: 'ServiceName'
+          value: 'Service A'
+        }
+      ]
     }
   }
 }
@@ -25,6 +31,12 @@ resource appServiceB 'Microsoft.Web/sites@2024-11-01' = {
     siteConfig: {
       linuxFxVersion: 'DOTNETCORE|9.0'
       ftpsState: 'Disabled'
+      appSettings: [
+        {
+          name: 'ServiceName'
+          value: 'Service B'
+        }
+      ]
     }
   }
 }
