@@ -29,3 +29,5 @@ Failures happen, and resilience drills help organizations prepare for them.](htt
 [The DiRT on Chaos Engineering at Google • Jason Cahoon • GOTO 2021](https://www.youtube.com/watch?v=6I8Ag9mCEpY)
 
 [John Savill's Technical Training: Azure Chaos Studio](https://www.youtube.com/watch?v=IkEQm6m46Ow)
+
+[Chaos & Intuition Engineering at Netflix • Casey Rosenthal • GOTO 2016](https://www.youtube.com/watch?v=Q4nniyAarbs)
