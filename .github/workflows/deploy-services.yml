@@ -13,7 +13,7 @@ env:
   BASIC_SERVICE_LOCATION: ./code/BasicService
   YARP_PROXY_LOCATION: ./code/YarpProxy
   BASIC_SERVICE_AZURE_WEBAPP_PACKAGE_PATH: ./published/BasicService
-  YARP_PROXY_AZURE_WEBAPP_PACKAGE_PATH: ./published/BasicService
+  YARP_PROXY_AZURE_WEBAPP_PACKAGE_PATH: ./published/YarpProxy
 jobs:
     build_basic_service:
         runs-on: ubuntu-latest
