@@ -2,9 +2,11 @@ targetScope = 'resourceGroup'
 
 param location string
 param appServicePlanId string
+param nameServiceA string
+param nameServiceB string
 
 resource appServiceA 'Microsoft.Web/sites@2024-11-01' = {
-  name: 'web-service-a'
+  name: nameServiceA
   location: location
   properties: {
     httpsOnly: true
@@ -23,7 +25,7 @@ resource appServiceA 'Microsoft.Web/sites@2024-11-01' = {
 }
 
 resource appServiceB 'Microsoft.Web/sites@2024-11-01' = {
-  name: 'web-service-b'
+  name: nameServiceB
   location: location
   properties: {
     httpsOnly: true
