@@ -3,8 +3,7 @@
 This repository contains the source code, PowerPoint slides of the Thrive in chaos session.
 
 ## Open issues
- - Don't have to hard code URL's in YARP.
- - Have a working deployment pipeline
+ - Move permission assignment to RBAC file
 
 ## Creating infra
 
