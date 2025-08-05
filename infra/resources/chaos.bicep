@@ -59,13 +59,13 @@ resource experimentStopServiceA 'Microsoft.Chaos/experiments@2025-01-01' = {
 }
 
 // TODO: Move to RBAC file
-var roleDefinitionResourceId = 'de139f84-1756-47ae-9be6-808fbbe84772'
+var websiteContributorRoleDefinitionResourceId = 'de139f84-1756-47ae-9be6-808fbbe84772'
 resource roleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(experimentStopServiceA.id, roleDefinitionResourceId)
+  name: guid(experimentStopServiceA.id, websiteContributorRoleDefinitionResourceId)
   scope: appServiceA
   properties: {
     principalId: experimentStopServiceA.identity.principalId
     principalType: 'ServicePrincipal'
-    roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions', roleDefinitionResourceId)
+    roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions', websiteContributorRoleDefinitionResourceId)
   }
 }
