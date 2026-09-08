@@ -14,9 +14,9 @@ To following command shows how the resources can be deployed with the Azure CLI.
 az deployment sub create --location <location> --template-file ./infra/main.bicep --parameters resourceGroupName=<resourceGroupName>
 ```
 
-Example that creates an resource group 'chaos-demo' and deploys the resources to West Europe.
+Example that creates an resource group 'chaos-demo-rg' and deploys the resources to West Europe.
 ```powershell
-az deployment sub create --location 'West Europe' --template-file ./infra/main.bicep --parameters resourceGroupName='chaos-demo'
+az deployment sub create --location 'West Europe' --template-file ./infra/main.bicep --parameters resourceGroupName='chaos-demo-rg'
 ```
 
 ## Additional resources
